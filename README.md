@@ -37,6 +37,12 @@ This project trains a machine learning model with **Apache Spark MLlib (PySpark)
 ### Prediction (`predict.py`)
 Loads the saved pipeline model, runs it on a test CSV, and prints the **RMSE**.
 
+## Results
+
+On a 4-node AWS EC2 Spark cluster, **Linear Regression** gave the best result, with a validation **RMSE of 0.013751**.
+
+For the full write-up, see the [Final Report (PDF)](CS643_Project2_Final_Report.pdf).
+
 ## Project Structure
 
 ```
@@ -45,7 +51,8 @@ Loads the saved pipeline model, runs it on a test CSV, and prints the **RMSE**.
 ├── predict.py             # Load model and evaluate on a test file
 ├── Dockerfile             # Container image for prediction
 ├── TrainingDataset.csv
-└── ValidationDataset.csv
+├── ValidationDataset.csv
+└── CS643_Project2_Final_Report.pdf
 ```
 
 ## Requirements
@@ -94,7 +101,7 @@ Example output:
 ```
 ==================================================
 Test Dataset: /data/ValidationDataset.csv
-Root Mean Squared Error (RMSE): <value>
+Root Mean Squared Error (RMSE): 0.013751
 ==================================================
 ```
 
