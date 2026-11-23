@@ -39,7 +39,7 @@ Loads the saved pipeline model, runs it on a test CSV, and prints the **RMSE**.
 
 ## Results
 
-On a 4-node AWS EC2 Spark cluster (1 master + 3 workers, `t2.medium`, Ubuntu 24.04), **Linear Regression** gave the best result, with a validation **RMSE of 0.013751**.
+On a 4-node AWS EC2 Spark cluster (1 master + 3 workers, `t2.medium`, Ubuntu 24.04), **Linear Regression** gave the best result, with a validation **RMSE of 0.013731**.
 
 The prediction container is published on Docker Hub: [`vyompatel2709/cs643-energy-predictor`](https://hub.docker.com/r/vyompatel2709/cs643-energy-predictor).
 
@@ -122,7 +122,7 @@ Example output:
 ```
 ==================================================
 Test Dataset: /data/ValidationDataset.csv
-Root Mean Squared Error (RMSE): 0.013751
+Root Mean Squared Error (RMSE): 0.013731
 ==================================================
 ```
 
