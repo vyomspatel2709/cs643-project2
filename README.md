@@ -39,9 +39,11 @@ Loads the saved pipeline model, runs it on a test CSV, and prints the **RMSE**.
 
 ## Results
 
-On a 4-node AWS EC2 Spark cluster, **Linear Regression** gave the best result, with a validation **RMSE of 0.013751**.
+On a 4-node AWS EC2 Spark cluster (1 master + 3 workers, `t2.medium`, Ubuntu 24.04), **Linear Regression** gave the best result, with a validation **RMSE of 0.013751**.
 
-For the full write-up, see the [Final Report (PDF)](CS643_Project2_Final_Report.pdf).
+The prediction container is published on Docker Hub: [`vyompatel2709/cs643-energy-predictor`](https://hub.docker.com/r/vyompatel2709/cs643-energy-predictor).
+
+For the full write-up, including cluster setup, Docker deployment, and the AI usage disclosure, see the [Final Report (PDF)](CS643_Project2_Final_Report.pdf).
 
 ## Project Structure
 
@@ -89,6 +91,25 @@ python3 predict.py ValidationDataset.csv energy_model
 ```
 
 ### 3. Run prediction with Docker
+
+#### Option A: Pull the pre-built image from Docker Hub
+
+The published image already contains the trained model, so you don't need to train first.
+
+```bash
+docker pull vyompatel2709/cs643-energy-predictor:latest
+docker run --rm -v "$(pwd)":/data vyompatel2709/cs643-energy-predictor:latest /data/ValidationDataset.csv
+```
+
+On Apple Silicon (arm64) Macs, add `--platform linux/amd64`:
+```bash
+docker run --platform linux/amd64 --rm -v "$(pwd)":/data \
+  vyompatel2709/cs643-energy-predictor:latest /data/ValidationDataset.csv
+```
+
+To evaluate a different file, such as `TestDataset.csv`, put it in the current directory and pass `/data/TestDataset.csv`.
+
+#### Option B: Build the image yourself
 
 You must train the model first, because the image copies the `energy_model/` folder into itself. That folder isn't stored in this repo.
 
