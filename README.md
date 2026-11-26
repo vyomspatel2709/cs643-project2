@@ -52,6 +52,7 @@ For the full write-up, including cluster setup, Docker deployment, and the AI us
 ├── train.py               # Parallel model training & selection
 ├── predict.py             # Load model and evaluate on a test file
 ├── Dockerfile             # Container image for prediction
+├── energy_model/          # Trained Spark PipelineModel (Linear Regression)
 ├── TrainingDataset.csv
 ├── ValidationDataset.csv
 └── CS643_Project2_Final_Report.pdf
@@ -111,7 +112,7 @@ To evaluate a different file, such as `TestDataset.csv`, put it in the current d
 
 #### Option B: Build the image yourself
 
-You must train the model first, because the image copies the `energy_model/` folder into itself. That folder isn't stored in this repo.
+The trained model (`energy_model/`) is included in this repo, so you can build the image directly without training first.
 
 ```bash
 docker build -t cs643-project2 .
